@@ -15,4 +15,8 @@
 
 ##### Solution
 
+*NB*: The following solution assumes the first example in the provided problem description had a typo wherein
+
+`[1, [2, [4], [5], [3]]]` really should have been `[1, [2, [4], [5]], [3]]`
+
 [See solution](./post_order_traversal.py)
