@@ -1,2 +1,3 @@
 *.db
 *.dump
+__pycache__
