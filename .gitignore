@@ -1,3 +1,4 @@
 *.db
 *.dump
+.idea
 __pycache__
