@@ -2,6 +2,9 @@ import unittest
 
 
 def post_order_traversal(tree):
+    if not tree:
+        return []
+
     traversal = []
 
     for child in tree[1:]:

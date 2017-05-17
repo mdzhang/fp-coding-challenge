@@ -1,3 +1,5 @@
+*NB* The following solutions assume Python v3.6.1
+
 > Write a function that computes the hamming distance between two iterables. The hamming distance is defined as the number of positions where the symbols are different. <https://en.wikipedia.org/wiki/Hamming_distance>
 
 ##### Solution
