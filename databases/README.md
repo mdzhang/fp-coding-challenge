@@ -20,6 +20,8 @@ The above table should give a result like this
 +----------------------+
 ```
 
+##### Solution
+
 [See solution](./find_duplicates.sql)
 
 > Write a SQL query which given an arbitrary range will assign a unique rank to each rank in a column named Score.
@@ -51,5 +53,7 @@ Given the above table, your query should generate the following report:
 | 3.50  | 6    |
 +-------+------+
 ```
+
+##### Solution
 
 [See solution](./generate_ranks.sql)

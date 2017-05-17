@@ -1,5 +1,7 @@
 > Given a file how do you show the last line of a file?
 
+##### Solution
+
 ```sh
 cat <path to file> | tail -n 1
 ```
@@ -17,6 +19,8 @@ Line 10
 ```
 
 > Write a bash script to calculate the frequency of each word in a text file
+
+##### Solution
 
 ```sh
 cat <path to file> |
