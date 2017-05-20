@@ -23,7 +23,7 @@ Line 10
 
 ##### Solution
 
-[See solution](./last_line.sql)
+[See solution](./last_line.sh)
 
 > Write a bash script to calculate the frequency of each word in a text file
 
@@ -59,4 +59,4 @@ spoon 1
 
 *NB*: Assumes printing correct frequencies is acceptable, regardless of order in which they are printed
 
-[See solution](./word_count.sql)
+[See solution](./word_count.sh)

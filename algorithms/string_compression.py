@@ -5,30 +5,29 @@ import unittest
 
 
 def compress_binary_string(string):
-    """Convert a string of 0s and 1s to bits, and return as list of chars"""
+    """Convert string of 0s and 1s to bits, and reinterpret bits as string"""
     # string composed of bytes, each 8 bits
     # so must make sure string of 0s and 1s
     # has length which is a multiplier of 8
     pad = (8 - len(string)) % 8
     padded_data = '0' * pad + string
 
-    chars = list(map(
+    chars = [
         # convert string to binary and reinterpret as ascii char
-        lambda eight: chr(int(eight, 2)),
+        chr(int(eight, 2)) for eight in
         # split padded_data in segments of length 8
         [padded_data[i:i + 8] for i in range(0, len(padded_data), 8)]
-    ))
+    ]
 
     return ''.join(chars), pad
 
 
 def expand_compressed_string(string, pad=0):
-    padded_data = ''.join(list(map(
+    padded_data = ''.join([
         # interpret ascii char as base 2 int, convert to binary string,
         # remove 0b cruft, and ensure has length 8
-        lambda char: bin(ord(char))[2:].zfill(8),
-        list(string)
-    )))
+        bin(ord(char))[2:].zfill(8) for char in string
+    ])
 
     return padded_data[pad:]
 
@@ -114,9 +113,9 @@ class HuffmanTree(object):
     def __encode_tree(self, leaves):
         """Encode tree structure as string of 0s and 1s
 
-        String is 0xy where x and y are encodings of
-        the left and right subtrees, respectively
-        If string has no children, string is 1.
+        String is '0xy' where x and y are encodings of
+        the left and right subtrees, respectively.
+        If string has no children, string is '1'.
         Works b/c Huffman Tree is a full binary tree i.e.
         every node has either two children or no children
 
@@ -134,7 +133,6 @@ class HuffmanTree(object):
         return header
 
     def encode_tree(self):
-        """Encode tree"""
         leaves = []
 
         encoded_tree = self.__encode_tree(leaves)
@@ -144,7 +142,7 @@ class HuffmanTree(object):
 
     @classmethod
     def decode_tree(cls, encoded_tree, leaves, idx=0):
-        """Decode tree
+        """Decode tree; inverse of encode_tree
 
         NB: Resulting tree will have all weightless nodes
         """
@@ -183,7 +181,7 @@ class HuffmanTree(object):
 
     @classmethod
     def encode(cls, string):
-        """Encode the string and it's Huffman Tree"""
+        """Encode the given string and its Huffman Tree"""
         huff_tree = HuffmanTree.from_string(string)
         encoded_data = huff_tree.huffman_encode(string)
         compressed_data, data_pad = compress_binary_string(encoded_data)
@@ -191,22 +189,15 @@ class HuffmanTree(object):
         encoded_tree, leaves = huff_tree.encode_tree()
         compressed_tree, tree_pad = compress_binary_string(encoded_tree)
 
-        segments = list(map(
-            lambda i: str(i),
-            [
-                len(compressed_tree),
-                tree_pad,
-                len(leaves),
-                data_pad,
-            ]
-        ))
+        segments = [len(compressed_tree), tree_pad, len(leaves), data_pad]
+        segments = [str(e) for e in segments]
 
         segments.append(compressed_tree + leaves + compressed_data)
         return '|'.join(segments)
 
     @classmethod
     def decode(cls, string):
-        """Decode the string and it's Huffman Tree"""
+        """Inverse of encode"""
         meta = string.split('|', 4)
 
         if len(meta) != 5:
@@ -226,22 +217,15 @@ class HuffmanTree(object):
         return huff_tree.huffman_decode(encoded_data)
 
     def huffman_encode(self, string):
-        """Encode a string to another string using only 0s and 1s
+        """Encode a string to another string consisting of only 0s and 1s
 
-        NB: You should use encode, and not this method,
-            if you need to decode the string and this tree is not available
+        NB: You should use encode, and not this method, if you need
+            to decode the string and this tree will not be available
         """
-        return ''.join(map(
-            lambda char: self.codebook[char],
-            string
-        ))
+        return ''.join([self.codebook[char] for char in string])
 
     def huffman_decode(self, string):
-        """Decode a string of 0s and 1s to the string before base encoding
-
-        NB: Use this to decode strings as encoded by huffman_encode,
-            not as encoded by encode
-        """
+        """Inverse of huffman_encode"""
         decoded_string = ''
         node = self
 
@@ -334,9 +318,6 @@ class TestHuffmanTree(unittest.TestCase):
         self.assertEqual(tree.right.codebook, {})
 
         self.assertEqual(tree.encode_tree(), (encoded_tree, leaves))
-
-    def test_encode(self):
-        pass
 
 
 def encode(string: str) -> str:
