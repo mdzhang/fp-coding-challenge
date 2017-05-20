@@ -22,6 +22,8 @@ The above table should give a result like this
 
 ##### Solution
 
+*NB*: Assuming exact print formatting match unnecessary
+
 [See solution](./find_duplicates.sql)
 
 > Write a SQL query which given an arbitrary range will assign a unique rank to each rank in a column named Score.
@@ -55,5 +57,11 @@ Given the above table, your query should generate the following report:
 ```
 
 ##### Solution
+
+*NB*: Assumes db with ANSI SQL 99 compliance and access to windowing functions
+
+*NB*: Assumes rounding to 2 decimal point precision is acceptable
+
+*NB*: Assuming exact print formatting match unnecessary
 
 [See solution](./generate_ranks.sql)

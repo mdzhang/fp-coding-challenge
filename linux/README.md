@@ -57,4 +57,6 @@ spoon 1
 
 ##### Solution
 
+*NB*: Assumes printing correct frequencies is acceptable, regardless of order in which they are printed
+
 [See solution](./word_count.sql)

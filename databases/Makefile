@@ -10,8 +10,8 @@ init-ranks-db:
 open-ranks-db:
 	psql postgres
 
-test-find-duplicates:
+run-find-duplicates:
 	cat find_duplicates.sql | sqlite3 ./fixtures/emails.db
 
-test-generate-ranks:
+run-generate-ranks:
 	cat generate_ranks.sql | psql postgres

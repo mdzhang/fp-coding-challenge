@@ -1,6 +1,6 @@
 # Coding Challenge
 
-*NB* Subdirectory `README`s have links to solutions for that category. `Makefile`s provide useful hints for setting up env and running test cases.
+*NB*: Subdirectory `README`s have links to solutions for that category. `Makefile`s provide useful hints for setting up env and running test cases.
 
 ## Table of Contents
 
